@@ -1,0 +1,54 @@
+//----------------------------------------------------------------------------
+// Modelling of a Dopamine (DA) neuron of the ventrolateral periaquaductal gray and dorsal raphe nucleus(vlPAG/DRN). 
+// Based on a description of voltage clamp-data from 
+
+// Dougalis AG1,2,3, Matthews GA1,2,4, Liss B3, Ungless MA1,2.
+// Ionic currents influencing spontaneous firing and pacemaker frequency in dopamine neurons of the ventrolateral periaqueductal gray 
+// and dorsal raphe nucleus (vlPAG/DRN): A voltage-clamp and computational modelling study.
+// J Comput Neurosci. 2017 Apr 3. doi: 10.1007/s10827-017-0641-0. [Epub ahead of print]
+
+// 1 MRC London Institute of Medical Sciences (LMS), Du Cane Road, London, W12 0NN, UK.
+// 2 Institute of Clinical Sciences (ICS), Imperial College London, Faculty of Medicine, Du Cane Road, London, W12 0NN, UK.
+// 3 Institute of Applied Physiology, University of Ulm, Faculty of Medicine, 89073, Ulm, Germany.
+// 4 Picower Institute for Learning and Memory, Department of Brain and Cognitive Sciences, Massachusetts Institute of Technology, Cambridge, MA, 02139, USA.
+
+// model implementer, Dr Antonios Dougalis (antoniosdougalis@hotmail.com), last update 17th April 2017, Berlin
+
+
+
+//the command load_file("nrngui.hoc") is executed from the mosinit.hoc file
+
+//--------------------------------------------------------------------------------------------------
+//  create vlPAG/DRN DA neuron and insert ionic mechanism from compiled library (.dll) of .mod files
+//--------------------------------------------------------------------------------------------------
+newgbar = .0008
+create DA 
+DA {
+  diam=15
+  L=15
+  Ra = 35.4
+  cm=1
+  nseg = 1 
+  insert NaT
+  insert kDR
+  insert leak
+  insert kA
+  insert H
+  insert caHVA
+  insert caLVA
+  insert kM
+  insert NaP
+  insert cagk
+}
+
+//----------------------------------------------------------------------------
+//  insert IClamp in DA  terminal 
+//----------------------------------------------------------------------------
+access DA
+objectvar stim      
+DA stim = new IClamp(0.5)
+stim.del = 1000
+stim.dur = 1000        
+stim.amp = 0
+celsius = 37
+xopen("vlPAG_DRN_DA.ses")
