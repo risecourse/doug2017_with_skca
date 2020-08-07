@@ -1,6 +1,8 @@
 //creation of three graphic result windows, a run control panel, an I/V electrode control panel
 
-
+proc spkrpt() {
+print "The cell's firing rate is ", spike_times.size*1000/tstop, " Hz"
+}
 
 objectvar save_window_, rvp_
 objectvar scene_vector_[6]
@@ -40,7 +42,7 @@ save_window_.addexpr("v(.5)", 1, 1, 0.8, 0.9, 2)
 xpanel("RunControl", 0)
 v_init = -65
 xvalue("Init","v_init", 1,"stdinit()", 1, 1 )
-xbutton("Init & Run","run()")
+xbutton("Init & Run","{run() spkrpt()}")
 xbutton("Stop","stoprun=1")
 runStopAt = 5
 xvalue("Continue til","runStopAt", 1,"{continuerun(runStopAt) stoprun=1}", 1, 1 )

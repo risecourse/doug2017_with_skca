@@ -73,8 +73,20 @@ tempmatrix.setcol(10, recileak_leak)
 
 
 tempmatrix.fprint(savdata, " %g")
-
+strdef cmd
+objref f
 proc savalldata(){
+
+
+sprint(cmd,"./%s_spikeraster.dat", "Simulation")
+f = new File(cmd)
+f.wopen()
+for i=0, spike_times.size-1 {
+    f.printf("%.3f\n", spike_times.x[i])
+}
+f.close()
+
+
 savdata.wopen("vlPAG_DRN_Analysis.dat")
 savdata.printf("t DA.v(0.5)\n")             //first line of data file
 savdata.printf("s mV mA/cm2 mA/cm2 mA/cm2 mA/cm2 mA/cm2 mA/cm2 mA/cm2 mA/cm2 mA/cm2\n")       //second line of data for units

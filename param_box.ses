@@ -25,7 +25,7 @@ DA.gkDRbar_kDR = 0.003
 xvalue("gkDRbar_kDR","DA.gkDRbar_kDR", 1,"", 0, 0 )
 DA.gkAbar_kA = 0.006
 xvalue("gkAbar_kA","DA.gkAbar_kA", 1,"", 0, 0 )
-DA.gkbar_cagk = 0.001
+DA.gkbar_cagk = newgbar // 0.001
 xvalue("gkbar_cagk","DA.gkbar_cagk", 1,"", 0, 0 )
 DA.gkMbar_kM = 0.0008
 xvalue("gkMbar_kM","DA.gkMbar_kM", 1,"", 0, 0 )
@@ -117,4 +117,4 @@ xpanel(1178,0)
 objectvar scene_vector_[1]
 {doNotify()}
 
-xopen("Messaging.ses")
+//xopen("Messaging.ses")

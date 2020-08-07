@@ -51,4 +51,14 @@ stim.del = 1000
 stim.dur = 1000        
 stim.amp = 0
 celsius = 37
+
+objref spike_times, netcon, nil
+spike_times = new Vector()
+
+objref nc
+DA nc = new NetCon (&v(1), nil)
+nc.threshold = -10
+nc.record(spike_times)
+objref nc
+
 xopen("vlPAG_DRN_DA.ses")
